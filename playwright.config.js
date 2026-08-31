@@ -12,6 +12,6 @@ export default defineConfig({
   webServer: {
     command: 'npx serve -l 5500',
     url: 'http://localhost:5500',
-    reuseExistingServer: true,
+    reuseExistingServer: !process.env.CI,
   },
 });
