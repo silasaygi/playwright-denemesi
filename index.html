@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Giriş Yap</title>
+</head>
+<body>
+  <h1>Giriş Yap</h1>
+
+  <form id="giris-formu">
+    <label for="email">Email</label>
+    <input type="text" id="email" name="email">
+
+    <label for="sifre">Şifre</label>
+    <input type="password" id="sifre" name="sifre">
+
+    <button type="submit" id="gonder">Giriş</button>
+  </form>
+
+  <p id="mesaj"></p>
+
+  <script>
+    document.getElementById('giris-formu').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const sifre = document.getElementById('sifre').value;
+      const mesaj = document.getElementById('mesaj');
+
+      if (!email.includes('@')) {
+        mesaj.textContent = 'Geçerli bir email girin';
+        return;
+      }
+      if (sifre.length < 6) {
+        mesaj.textContent = 'Şifre en az 6 karakter olmalı';
+        return;
+      }
+      mesaj.textContent = 'Hoş geldin, ' + email;
+    });
+  </script>
+</body>
+</html>
