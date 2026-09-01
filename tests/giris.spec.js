@@ -27,8 +27,17 @@ test('kısa şifre uyarı veriyor', async ({ page }) => {
 
 test('doğru bilgilerle giriş yapılıyor', async ({ page }) => {
   await page.fill('#email', 'sila@ornek.com');
-  await page.fill('#sifre', '123456');
+  await page.fill('#sifre', '12345678');
   await page.click('#gonder');
+
+
+  test('kısa şifre uyarı veriyor', async ({ page }) => {
+    await page.fill('#email', 'sila@ornek.com');
+    await page.fill('#sifre', '123');
+    await page.click('#gonder');
+    await expect(page.locator('#mesaj')).toHaveText('Şifre en az 8 karakter olmalı');
+  });
+   
 
   await expect(page.locator('#mesaj')).toHaveText('Hoş geldin, sila@ornek.com');
 });
